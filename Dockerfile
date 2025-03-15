@@ -1,20 +1,20 @@
-# Use the official Node.js image as the base image
-FROM node:14
+# Use a lightweight Node.js image
+FROM node:18-slim
 
-# Set the working directory
-WORKDIR /usr/src/app
+# Set working directory
+WORKDIR /app
 
-# Copy package.json and package-lock.json files to the working directory
+# Copy package files and install dependencies
 COPY package*.json ./
+RUN npm install --omit=dev
 
-# Install the dependencies
-RUN npm install
-
-# Copy the rest of the application code to the working directory
+# Copy the rest of the application files
 COPY . .
 
-# Expose the port the application runs on
-EXPOSE 3000
+# Set environment variable
 
-# Define the command to run the application
-CMD ["node", "index.js"]
+# Expose the required port
+EXPOSE 5001
+
+# Start the application
+CMD ["node", "server.js"]
