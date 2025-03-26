@@ -24,7 +24,7 @@ const app = express();
 // Enable CORS to allow frontend requests
 app.use(
   cors({
-    origin: "https://learn-sphere-ai-powered-educational-platform.vercel.app/", // Ensure this matches your frontend URL
+    origin: "https://learn-sphere-ai-powered-educational-platform.vercel.app", // Ensure this matches your frontend URL
     credentials: true, // Allows sending cookies with requests
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
