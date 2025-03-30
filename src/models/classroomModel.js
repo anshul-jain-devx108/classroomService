@@ -76,10 +76,19 @@ const Classroom = {
     return classroomData;
   },
 
-  getAll: async () => {
-    const snapshot = await db.collection("classrooms").get();
+  // getAll: async () => {
+  //   const snapshot = await db.collection("classrooms").get();
+  //   return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+  // },
+
+    getAll: async (ownerEmail) => {
+    const snapshot = await db.collection("classrooms")
+        .where("owner_email", "==", ownerEmail)
+        .get();
+
     return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-  },
+},
+
 
   getById: async (id) => {
     const doc = await db.collection("classrooms").doc(id).get();
