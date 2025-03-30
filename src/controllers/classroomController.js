@@ -155,18 +155,33 @@ exports.getAllClassrooms = async (req, res) => {
 /**
  * Get a single classroom by ID
  */
-exports.getClassroomById = async (req, res) => {
+// exports.getClassroomById = async (req, res) => {
+//   try {
+//     const classroom = await Classroom.getById(req.params.id);
+//     if (!classroom) {
+//       return res.status(404).json({ error: "Classroom not found" });
+//     }
+//     return res.status(200).json(classroom);
+//   } catch (error) {
+//     console.error("Error fetching classroom:", error);
+//     return res.status(500).json({ error: "Failed to fetch classroom" });
+//   }
+// };
+
+exports.getAllClassrooms = async (req, res) => {
   try {
-    const classroom = await Classroom.getById(req.params.id);
-    if (!classroom) {
-      return res.status(404).json({ error: "Classroom not found" });
+    if (!req.user || !req.user.email) {
+      return res.status(401).json({ error: "Unauthorized: User not authenticated" });
     }
-    return res.status(200).json(classroom);
+
+    const classrooms = await Classroom.getAll(req.user.email);
+    return res.status(200).json({ classrooms });
   } catch (error) {
-    console.error("Error fetching classroom:", error);
-    return res.status(500).json({ error: "Failed to fetch classroom" });
+    console.error("Error fetching classrooms:", error);
+    return res.status(500).json({ error: "Failed to fetch classrooms" });
   }
 };
+
 
 /**
  * Update a classroom (Only the owner can update)
