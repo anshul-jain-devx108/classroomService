@@ -142,32 +142,15 @@ exports.createClassroom = async (req, res) => {
 /**
  * Get all classrooms
  */
-exports.getAllClassrooms = async (req, res) => {
-  try {
-    const classrooms = await Classroom.getAll();
-    return res.status(200).json({ classrooms });
-  } catch (error) {
-    console.error("Error fetching classrooms:", error);
-    return res.status(500).json({ error: "Failed to fetch classrooms" });
-  }
-};
-
-/**
- * Get a single classroom by ID
- */
-// exports.getClassroomById = async (req, res) => {
+// exports.getAllClassrooms = async (req, res) => {
 //   try {
-//     const classroom = await Classroom.getById(req.params.id);
-//     if (!classroom) {
-//       return res.status(404).json({ error: "Classroom not found" });
-//     }
-//     return res.status(200).json(classroom);
+//     const classrooms = await Classroom.getAll();
+//     return res.status(200).json({ classrooms });
 //   } catch (error) {
-//     console.error("Error fetching classroom:", error);
-//     return res.status(500).json({ error: "Failed to fetch classroom" });
+//     console.error("Error fetching classrooms:", error);
+//     return res.status(500).json({ error: "Failed to fetch classrooms" });
 //   }
 // };
-
 exports.getAllClassrooms = async (req, res) => {
   try {
     if (!req.user || !req.user.email) {
@@ -181,6 +164,24 @@ exports.getAllClassrooms = async (req, res) => {
     return res.status(500).json({ error: "Failed to fetch classrooms" });
   }
 };
+
+/**
+ * Get a single classroom by ID
+ */
+exports.getClassroomById = async (req, res) => {
+  try {
+    const classroom = await Classroom.getById(req.params.id);
+    if (!classroom) {
+      return res.status(404).json({ error: "Classroom not found" });
+    }
+    return res.status(200).json(classroom);
+  } catch (error) {
+    console.error("Error fetching classroom:", error);
+    return res.status(500).json({ error: "Failed to fetch classroom" });
+  }
+};
+
+
 
 
 /**
