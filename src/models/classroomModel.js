@@ -81,12 +81,12 @@ const Classroom = {
   //   return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
   // },
 
-    getAll: async (ownerEmail) => {
-    const snapshot = await db.collection("classrooms")
-        .where("owner_email", "==", ownerEmail)
-        .get();
+  getAll: async (userEmail) => {
+  const snapshot = await db.collection("classrooms")
+    .where("owner_email", "==", userEmail) // 🔹 Filter by owner_email
+    .get();
 
-    return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+  return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 },
 
 
