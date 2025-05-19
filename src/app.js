@@ -34,6 +34,8 @@ app.use(
 // Middleware to parse JSON and cookies
 app.use(express.json());
 app.use(cookieParser());
+app.options("*", cors());
+
 
 // Classroom API routes
 app.use("/api/classrooms", classroomRoutes);
