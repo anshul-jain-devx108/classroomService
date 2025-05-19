@@ -60,9 +60,9 @@ const dotenv = require("dotenv");
 
 dotenv.config(); // Load environment variables
 
-if (!process.env.FIREBASE_PROJECT_ID || !process.env.FIREBASE_PRIVATE_KEY || !process.env.FIREBASE_CLIENT_EMAIL) {
-    throw new Error("❌ Missing Firebase environment variables!");
-}
+// if (!process.env.FIREBASE_PROJECT_ID || !process.env.FIREBASE_PRIVATE_KEY || !process.env.FIREBASE_CLIENT_EMAIL) {
+//     throw new Error("❌ Missing Firebase environment variables!");
+// }
 
 // Parse Firebase private key properly
 const serviceAccount = {
